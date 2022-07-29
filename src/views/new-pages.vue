@@ -6,7 +6,7 @@
             <input type="text" v-model="name">
         </div>
         <!--引用组件-->
-        <test></test>
+        <test msg="我是组件xxxxxx~~~~~~"></test>
     </div>
 </template>
 <script lang="ts">
@@ -20,7 +20,7 @@
         }
     })
     export default class HelloWorld extends Vue {
-        message = 'HelloWorld TypeScript';
+        message = 'My bro';
         firstName = "尼古拉斯";
         lastName = "赵四";
 

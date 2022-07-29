@@ -1,18 +1,41 @@
 <template>
     <div class="about">
+		<!--引用组件-->
+        <test msg="我是组件xxxxxx~~~~~~"></test>
+		<!-- watch 监听 -->
         {{count}}
         <button @click="addCount">数字递增</button>
-		<br/>
+		<br/><br/>
 		{{strings}}
         <button @click="setString">设置文本</button>
+		<br/><br/>
+		<!-- props -->
+		<div class="box">
+			{{name}}
+		</div>
+		<br/><br/>
+		<!-- computed 计算属性 -->
+		<div class="computeds">
+			{{ nameComputed }}
+			<input type="text" v-model="nameComputed">
+		</div>
+		<br/><br/>
+		<!-- filter -->
+		<p>{{aname}} ===> {{aname|toUpper}}</p>
+		<br>
+		<p>{{count}} ===> {{count|toPercentage}}</p>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
+import test from "@/components/test.vue";
 
 @Component({
+	components: {
+		test
+	},
     watch: {
         count: {
 			/**
@@ -47,12 +70,39 @@ import Component from 'vue-class-component'
 	
 		// ],
 
-    }
+    },
+	props: {
+		name: {
+			type:String,
+			required: false,
+			default: '张三0-0'
+		}
+	},
+	computed: {
+		nameComputed: {
+			get() {
+				return this.aname;
+			},
+			set(name: string) {
+				return this.aname = name;
+			}
+		}
+	},
+	filters: {
+		toUpper: function (value:string) {
+            return value.toUpperCase();
+        },
+        toPercentage: function (value:number) {
+            return value * 100 + '%';
+        }
+	}
 })
 export default class HelloWorld extends Vue {
-    count = 0;
+    count = 2;
 	strings = '这里是初始化';
-    addCount() {
+	aname = "这里是 computed 的文字";
+
+	addCount() {
         this.count++;
     }
 	setString() {

@@ -1,5 +1,5 @@
 <template>
-    <div class="test">我是其他组件xxx</div>
+    <div class="test">{{msg}}</div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";

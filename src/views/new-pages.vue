@@ -5,18 +5,27 @@
             <button @click="hello">来点我啊</button>
             <input type="text" v-model="name">
         </div>
+        <br/><br/>
+
         <!--引用组件-->
         <test msg="我是组件xxxxxx~~~~~~"></test>
+        <br/><br/>
+
+        <!-- AboutSec 组件 -->
+        <h3 class="">下面是 AboutSec 组件</h3>
+        <AboutSec name="李拜拜" @add-to-count="addToCount"></AboutSec>
     </div>
 </template>
 <script lang="ts">
     import Vue from 'vue'
     import Component from 'vue-class-component'
     import test from "@/components/test.vue";
+    import AboutSec from "@/views/AboutSec.vue";
 
     @Component({
         components: {
-            test
+            test,
+            AboutSec
         }
     })
     export default class HelloWorld extends Vue {
@@ -36,6 +45,10 @@
             const splitted = val.split(' ');
             this.firstName = splitted[0];
             this.lastName = splitted[1] || '';
+        }
+
+        addToCount(val:number){ // 沿用子组件内返回的值
+            console.log(val)
         }
 
         created(): void {

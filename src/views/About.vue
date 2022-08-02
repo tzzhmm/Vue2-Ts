@@ -109,7 +109,7 @@ export default class HelloWorld extends Vue {
 		this.strings += '今天';
 	}
     doSomething(nv: number, ov: number) {
-		console.log(nv, ov);
+		console.log('doSomething:',nv, ov);
     }
 }
 

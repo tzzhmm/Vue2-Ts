@@ -4,28 +4,35 @@
         <test msg="我是组件xxxxxx~~~~~~"></test>
 		<br/><br/>
 
-		<!-- watch 监听 -->
+		<!-- Watch 监听 -->
         {{count}}
         <button @click="addCount">数字递增</button>
 		<br/><br/>
 		
-		<!-- props -->
+		<!-- Props -->
 		<div class="box">
 			{{name}}
 		</div>
 		<br/><br/>
 		
+		<!-- Emit -->
 		<div class="box">
 			{{countsd}}
 		</div>
         <button @click="addToCount(2)">添加累加2</button>
+		<br/><br/>
+
+		<!-- Ref -->
+		<div class="ref">
+			<button @click="addWithCount" ref="myRefBtn" style="width: 200px">addWithCount</button>
+		</div>
 		
     </div>
 </template>
 
 <script lang="ts">
 
-import {Vue, Component, Watch, Prop, Emit} from 'vue-property-decorator'
+import {Vue, Component, Watch, Prop, Emit, Ref} from 'vue-property-decorator'
 import test from "@/components/test.vue";
 
 @Component({
@@ -72,6 +79,17 @@ export default class HelloWorld extends Vue {
 	@Emit()
     addToCount(n: number) {
         return this.countsd += n
+    }
+
+	/**
+	 * @Ref(refKey?: string)模板中定义的ref键
+	**/
+	 @Ref("myRefBtn") readonly button:any;
+    // @Ref()  button:any;
+
+    addWithCount() {
+		console.log(this)
+        console.log(this.button)
     }
 
 }

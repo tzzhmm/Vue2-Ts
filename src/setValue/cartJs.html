@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 数据类型
+    console.log('Undefined,Null, Boolean,Number,String, Object (Array, Function) ,Symbol,BigInt');
+    // Symbol   BigInt 是 ES6 单独新增
+    console.log( 'Symbol: 代表独一无二的值，最大的用法是用来定义对象的唯一属性名' );
+    console.log( 'BigInt: 以表示任意大小的整数' );
+
+    var arr = {};
+    console.log( typeof arr ); // typeof arr; // object
+    console.log( Array.isArray(arr) ); // Array.isArray(arr); // true
+    console.log( arr.__proto__ === Array.prototype ); // arr.__proto__ === Array.prototype; // true
+    console.log( arr instanceof Array ); // arr instanceof Array; // true
+    console.log( Object.prototype.toString.call(arr) ); // Object.prototype.toString.call(arr); // "[object Array]"
+    
+    /**
+     * typeof: 能判断所有值类型，函数。不可对 null、对象、数组进行精确判断，因为都返回 object
+    */
+    console.log('--------typeof: ',typeof undefined); // undefined
+    console.log(typeof 2); // number
+    console.log(typeof true); // boolean
+    console.log(typeof "str"); // string
+    console.log(typeof Symbol("foo")); // symbol
+    console.log(typeof 2172141653n); // bigint
+    console.log(typeof function () {}); // function
+    // 不能判别
+    console.log(typeof []); // object
+    console.log(typeof {}); // object
+    console.log(typeof null); // object
+
+    /**
+     * instanceof: 能判断对象类型，不能判断基本数据类型，其内部运行机制是判断在其原型链中能否找到该类型的原型。比如考虑以下代码：
+     *      其实现就是顺着原型链去找，如果能找到对应的 Xxxxx.prototype  即为 true 。比如这里的 vortesnail  
+     *      作为实例，顺着原型链能找到 Student.prototype  及 People.prototype ，所以都为 true 。
+    */
+    class People {};
+    class Student extends People {};
+    const vortesnail = new Student();
+    console.log('--------instanceof: ',vortesnail instanceof People); // true
+    console.log(vortesnail instanceof Student); // true
+    
+</script>
+</html>

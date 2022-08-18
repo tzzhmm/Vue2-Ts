@@ -30,6 +30,18 @@ const routes: Array<RouteConfig> = [
     name: "NewPage",
     component: () =>
       import("../views/new-pages.vue")
+  },
+  {
+    path: '/serve/:myRouterParams',
+    name: 'Serve',
+    component: () => 
+      import("../views/serve.vue")
+  },
+  {
+    path: '/routerQuery',
+    name: 'RouterQuery',
+    component: () => 
+      import("../views/routerQuery.vue")
   }
 ];
 

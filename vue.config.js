@@ -21,4 +21,11 @@ module.exports = {
         proxy: null
         // proxy: proxyConfig.proxyList,
     },
+    // 修改项目的 title，针对 htmlWebpackPlugin.options.title
+    chainWebpack: (config) => {
+        config.plugin('html').tap((args) => {
+          args[0].title = 'Project'
+          return args
+        })
+    }
 };

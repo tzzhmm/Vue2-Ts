@@ -14,6 +14,12 @@
         <!-- AboutSec 组件 -->
         <h3 class="">下面是 AboutSec 组件</h3>
         <AboutSec name="李拜拜" @add-to-count="addToCount"></AboutSec>
+
+        <br/><br/>
+        <button @click="goRouterParams">这里直接去 routerParams, 通过【router.params】传参</button>
+
+        <br/><br/>
+        <button @click="goRouterQuery">这里直接去 routerQuery, 通过【router.query】传参</button>
     </div>
 </template>
 <script lang="ts">
@@ -49,6 +55,27 @@
 
         addToCount(val:number){ // 沿用子组件内返回的值
             console.log(val)
+        }
+
+        goRouterParams() {
+            // !!!!!!!!!!!!!!!!!!!!!注意 router 的 path 参数和 params 参数不能共用，后者会被忽略
+
+            // 字符串路径
+            // this.$router.push('/serve/这里通过 params 传参-1');
+
+            // 带路径的对象
+            // this.$router.push({path: '/serve/这里通过 params 传参-2'});
+
+            // 命名路由，路由配置，需要 name 字段
+            this.$router.push({name: 'Serve', params: {myRouterParams: '这里通过 params 传参-3'}})
+        }
+
+        goRouterQuery() {
+            // this.$router.push('/routerQuery?myQuery=url传参-1');
+// 
+            // this.$router.push({path: '/routerQuery', query: {myQuery: 'url传参-2'}});
+
+            this.$router.push({name: 'RouterQuery', query: {myQuery: 'url传参-3'}});
         }
 
         created(): void {
